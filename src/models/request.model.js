@@ -1,13 +1,14 @@
-'use strict';
+"use strict";
 
-const mongoose = require('mongoose');
-const { REQUEST_STATUS } = require('../config/constants');
+const mongoose = require("mongoose");
+const { REQUEST_STATUS } = require("../config/constants");
 
 const tankerAssignmentSchema = new mongoose.Schema(
   {
     tankerNumber: { type: String, required: true, trim: true },
     driverName: { type: String, required: true, trim: true },
     driverMobile: { type: String, required: true, trim: true },
+    dateTime: { type: Date, required: true },
   },
   { _id: false },
 );
@@ -16,7 +17,7 @@ const requestSchema = new mongoose.Schema(
   {
     userId: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: 'User',
+      ref: "User",
       required: true,
     },
     // Snapshot of member details at time of request
@@ -24,7 +25,7 @@ const requestSchema = new mongoose.Schema(
     address: { type: String, required: true, trim: true },
     contactPerson: { type: String, required: true, trim: true },
     mobileNumber: { type: String, required: true, trim: true },
-    notes: { type: String, trim: true, maxlength: 500, default: '' },
+    notes: { type: String, trim: true, maxlength: 500, default: "" },
 
     status: {
       type: String,
@@ -39,11 +40,15 @@ const requestSchema = new mongoose.Schema(
     tankerAssignment: { type: tankerAssignmentSchema, default: null },
 
     assignedAt: { type: Date, default: null },
-    assignedBy: { type: mongoose.Schema.Types.ObjectId, ref: 'User', default: null },
+    assignedBy: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User",
+      default: null,
+    },
 
     completedAt: { type: Date, default: null },
     cancelledAt: { type: Date, default: null },
-    cancelReason: { type: String, default: '' },
+    cancelReason: { type: String, default: "" },
   },
   {
     timestamps: true,
@@ -56,4 +61,4 @@ requestSchema.index({ status: 1, queuePosition: 1 });
 requestSchema.index({ userId: 1, status: 1 });
 requestSchema.index({ queuePosition: 1 });
 
-module.exports = mongoose.model('Request', requestSchema);
+module.exports = mongoose.model("Request", requestSchema);

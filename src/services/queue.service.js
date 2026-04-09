@@ -82,10 +82,79 @@ const completeRequest = async (requestId) => {
   );
 };
 
+/**
+ * Generates a manager report with assignment statistics and history.
+ * Supports optional date range filtering.
+ */
+const getManagerReport = async ({
+  managerId,
+  startDate,
+  endDate,
+  page = 1,
+  limit = 50,
+} = {}) => {
+  const skip = (page - 1) * limit;
+
+  // Build match conditions
+  const matchConditions = {
+    assignedBy: new mongoose.Types.ObjectId(managerId),
+  };
+
+  if (startDate || endDate) {
+    matchConditions.assignedAt = {};
+    if (startDate) matchConditions.assignedAt.$gte = new Date(startDate);
+    if (endDate) matchConditions.assignedAt.$lte = new Date(endDate);
+  }
+
+  // Get summary statistics
+  const stats = await Request.aggregate([
+    { $match: matchConditions },
+    {
+      $group: {
+        _id: "$status",
+        count: { $sum: 1 },
+      },
+    },
+  ]);
+
+  // Get total assigned requests
+  const totalAssigned = await Request.countDocuments(matchConditions);
+
+  // Get detailed assignment history with pagination
+  const assignments = await Request.find(matchConditions)
+    .sort({ assignedAt: -1 })
+    .skip(skip)
+    .limit(limit)
+    .populate("userId", "mobileNumber profile")
+    .populate("assignedBy", "username mobileNumber")
+    .lean();
+
+  // Format statistics
+  const summary = {
+    total: totalAssigned,
+    byStatus: stats.reduce((acc, stat) => {
+      acc[stat._id] = stat.count;
+      return acc;
+    }, {}),
+  };
+
+  return {
+    summary,
+    assignments,
+    pagination: {
+      page,
+      limit,
+      total: totalAssigned,
+      totalPages: Math.ceil(totalAssigned / limit),
+    },
+  };
+};
+
 module.exports = {
   getNextQueuePosition,
   getPendingQueue,
   peekNextInQueue,
   assignTanker,
   completeRequest,
+  getManagerReport,
 };

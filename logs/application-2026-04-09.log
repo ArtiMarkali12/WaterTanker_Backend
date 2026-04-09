@@ -110,3 +110,5 @@ Error: An account with this mobile number already exists.
 [2026-04-09 13:24:24] INFO: MongoDB reconnected.
 [2026-04-09 13:24:35] WARN: MongoDB disconnected. Attempting to reconnect...
 [2026-04-09 13:24:35] INFO: MongoDB reconnected.
+[2026-04-09 14:46:08] INFO: MongoDB Connected: ac-rhwz3uy-shard-00-01.juh27ms.mongodb.net
+[2026-04-09 14:46:08] INFO: Server running on development mode on port 5000
