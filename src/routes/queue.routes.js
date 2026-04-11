@@ -20,8 +20,8 @@ const {
   managerReportValidator,
 } = require("../validators/request.validator");
 
-// All queue routes are manager-only
-router.use(protect, authorize(ROLES.MANAGER));
+// All queue routes are manager and superAdmin-only
+router.use(protect, authorize(ROLES.MANAGER, ROLES.SUPER_ADMIN));
 
 router.get("/", paginationValidator, validate, getQueue);
 router.get("/next", peekNext);

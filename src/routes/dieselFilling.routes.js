@@ -27,21 +27,21 @@ const {
   markAsWrongValidator,
 } = require("../validators/dieselFilling.validator");
 
-// Report endpoint must come before :id route to avoid conflict
+// Report endpoint
 router.get(
   "/report",
   protect,
-  authorize(ROLES.FUEL_MANAGER),
+  authorize(ROLES.FUEL_MANAGER, ROLES.SUPER_ADMIN),
   dieselReportValidator,
   validate,
   generateDieselReport,
 );
 
-// Summary endpoint must come before :id route to avoid conflict
+// Summary endpoint
 router.get(
   "/summary/:tankerNumber",
   protect,
-  authorize(ROLES.FUEL_MANAGER),
+  authorize(ROLES.FUEL_MANAGER, ROLES.SUPER_ADMIN),
   tankerSummaryValidator,
   validate,
   getTankerDieselSummary,
@@ -55,20 +55,25 @@ router.get(
   getWrongEntries,
 );
 
-// CRUD routes - fuelManager only
+// CRUD routes - fuelManager and superAdmin
 router.post(
   "/",
   protect,
-  authorize(ROLES.FUEL_MANAGER),
+  authorize(ROLES.FUEL_MANAGER, ROLES.SUPER_ADMIN),
   recordDieselFillingValidator,
   validate,
   recordDieselFilling,
 );
-router.get("/", protect, authorize(ROLES.FUEL_MANAGER), getAllDieselFillings);
+router.get(
+  "/",
+  protect,
+  authorize(ROLES.FUEL_MANAGER, ROLES.SUPER_ADMIN),
+  getAllDieselFillings,
+);
 router.get(
   "/:id",
   protect,
-  authorize(ROLES.FUEL_MANAGER),
+  authorize(ROLES.FUEL_MANAGER, ROLES.SUPER_ADMIN),
   getDieselFillingValidator,
   validate,
   getDieselFillingById,
@@ -76,7 +81,7 @@ router.get(
 router.put(
   "/:id",
   protect,
-  authorize(ROLES.FUEL_MANAGER),
+  authorize(ROLES.FUEL_MANAGER, ROLES.SUPER_ADMIN),
   updateDieselFillingValidator,
   validate,
   updateDieselFilling,
@@ -84,7 +89,7 @@ router.put(
 router.delete(
   "/:id",
   protect,
-  authorize(ROLES.FUEL_MANAGER),
+  authorize(ROLES.FUEL_MANAGER, ROLES.SUPER_ADMIN),
   deleteDieselFillingValidator,
   validate,
   deleteDieselFilling,

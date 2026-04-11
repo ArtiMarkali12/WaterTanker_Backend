@@ -20,11 +20,11 @@ const {
   paginationValidator,
 } = require("../validators/request.validator");
 
-// Member routes
+// Member and superadmin routes
 router.post(
   "/",
   protect,
-  authorize(ROLES.MEMBER),
+  authorize(ROLES.MEMBER, ROLES.SUPER_ADMIN),
   submitRequestValidator,
   validate,
   submitRequest,
@@ -32,7 +32,7 @@ router.post(
 router.get(
   "/my",
   protect,
-  authorize(ROLES.MEMBER),
+  authorize(ROLES.MEMBER, ROLES.SUPER_ADMIN),
   paginationValidator,
   validate,
   getMyRequests,
@@ -42,7 +42,7 @@ router.get(
 router.get(
   "/",
   protect,
-  authorize(ROLES.MANAGER,ROLES.SUPER_ADMIN),
+  authorize(ROLES.MANAGER, ROLES.SUPER_ADMIN),
   paginationValidator,
   validate,
   getAllRequests,
@@ -50,7 +50,7 @@ router.get(
 router.get(
   "/cancelled",
   protect,
-  authorize(ROLES.MANAGER,ROLES.SUPER_ADMIN),
+  authorize(ROLES.MANAGER, ROLES.SUPER_ADMIN),
   paginationValidator,
   validate,
   getCancelledRequests,
