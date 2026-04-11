@@ -55,7 +55,6 @@ const assignTanker = async ({ requestId, tankerAssignment, managerId }) => {
     },
     {
       $set: {
-        status: REQUEST_STATUS.ASSIGNED,
         tankerAssignment,
         assignedAt: new Date(),
         assignedBy: managerId,
@@ -71,11 +70,11 @@ const assignTanker = async ({ requestId, tankerAssignment, managerId }) => {
 };
 
 /**
- * Marks an assigned request as completed.
+ * Marks a pending request as completed.
  */
 const completeRequest = async (requestId) => {
   return Request.findOneAndUpdate(
-    { _id: requestId, status: REQUEST_STATUS.ASSIGNED },
+    { _id: requestId, status: REQUEST_STATUS.PENDING },
     { $set: { status: REQUEST_STATUS.COMPLETED, completedAt: new Date() } },
     { new: true },
   );
