@@ -69,6 +69,11 @@ const paginationValidator = [
     .optional()
     .isInt({ min: 1, max: 100 })
     .withMessage("Limit must be between 1 and 100."),
+
+  query("status")
+    .optional()
+    .isIn(["pending", "completed", "cancelled"])
+    .withMessage("Status must be pending, completed, or cancelled."),
 ];
 
 const managerReportValidator = [

@@ -5,15 +5,15 @@ const { sendSuccess, sendPaginated } = require("../utils/response.util");
 const { PAGINATION } = require("../config/constants");
 const { AppError } = require("../middlewares/error.middleware");
 
-
 const getQueue = async (req, res) => {
   const page = parseInt(req.query.page) || PAGINATION.DEFAULT_PAGE;
   const limit = Math.min(
     parseInt(req.query.limit) || PAGINATION.DEFAULT_LIMIT,
     PAGINATION.MAX_LIMIT,
   );
+  const { status } = req.query;
 
-  const result = await queueService.getPendingQueue({ page, limit });
+  const result = await queueService.getPendingQueue({ page, limit, status });
 
   sendPaginated(res, {
     message: "Queue fetched.",

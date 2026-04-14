@@ -1,0 +1,18 @@
+[2026-04-14 17:06:02] INFO: MongoDB Connected: cluster0-shard-00-01.6u1nu.mongodb.net
+[2026-04-14 17:06:02] INFO: Server running on development mode on port 5000
+[2026-04-14 17:21:41] ERROR: Error: An account with this mobile number already exists.
+Error: An account with this mobile number already exists.
+    at Object.register (D:\DarchTech_PVT_LLP\Water-Tanker-Backend\watertanker-backend\src\services\auth.service.js:32:11)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async register (D:\DarchTech_PVT_LLP\Water-Tanker-Backend\watertanker-backend\src\controllers\auth.controller.js:8:18)
+[2026-04-14 17:29:53] ERROR: Error: Receipt not found for this request.
+Error: Receipt not found for this request.
+    at Object.getReceiptByRequestId (D:\DarchTech_PVT_LLP\Water-Tanker-Backend\watertanker-backend\src\services\receipt.service.js:70:23)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async getReceiptByRequest (D:\DarchTech_PVT_LLP\Water-Tanker-Backend\watertanker-backend\src\controllers\receipt.controller.js:20:19)
+[2026-04-14 17:40:42] INFO: MongoDB Connected: cluster0-shard-00-01.6u1nu.mongodb.net
+[2026-04-14 17:40:42] INFO: Server running on development mode on port 5000
+[2026-04-14 17:40:54] INFO: MongoDB Connected: cluster0-shard-00-01.6u1nu.mongodb.net
+[2026-04-14 17:40:54] INFO: Server running on development mode on port 5000
+[2026-04-14 17:44:09] INFO: MongoDB Connected: cluster0-shard-00-02.6u1nu.mongodb.net
+[2026-04-14 17:44:09] INFO: Server running on development mode on port 5000

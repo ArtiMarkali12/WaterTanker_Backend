@@ -16,17 +16,19 @@ const getNextQueuePosition = async () => {
 
 /**
  * Returns the live pending queue sorted by queuePosition (FIFO order).
+ * If status filter is provided, filter by that status, otherwise return all.
  */
-const getPendingQueue = async ({ page = 1, limit = 20 } = {}) => {
+const getPendingQueue = async ({ page = 1, limit = 20, status } = {}) => {
   const skip = (page - 1) * limit;
+  const query = status ? { status } : {};
   const [items, total] = await Promise.all([
-    Request.find({ status: REQUEST_STATUS.PENDING })
+    Request.find(query)
       .sort({ queuePosition: 1 })
       .skip(skip)
       .limit(limit)
       .populate("userId", "mobileNumber profile")
       .lean(),
-    Request.countDocuments({ status: REQUEST_STATUS.PENDING }),
+    Request.countDocuments(query),
   ]);
   return { items, total, page, limit };
 };
@@ -173,7 +175,12 @@ const getManagerReport = async ({
  * Assigns source, destination, and kilometer details to a request.
  * Calculates roundTripKilometer = kilometers * 2.
  */
-const assignSourceDestination = async ({ requestId, source, destination, kilometers }) => {
+const assignSourceDestination = async ({
+  requestId,
+  source,
+  destination,
+  kilometers,
+}) => {
   const updated = await Request.findByIdAndUpdate(
     requestId,
     {
