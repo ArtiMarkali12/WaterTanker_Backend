@@ -1,0 +1,35 @@
+{
+    "keep": {
+        "days": true,
+        "amount": 14
+    },
+    "auditLog": "D:\\DarchTech_PVT_LLP\\WaterTranker Project\\watertanker-backend\\logs\\.b9b33ee2ac03b0dd426df99a64073d32031f465f-audit.json",
+    "files": [
+        {
+            "date": 1775634297772,
+            "name": "D:\\DarchTech_PVT_LLP\\WaterTranker Project\\watertanker-backend\\logs\\application-2026-04-08.log",
+            "hash": "0f6bea4ff49e70b8d674bc7b21c4de5abf1bbbfd539f4ac7c21fbb0da58598dc"
+        },
+        {
+            "date": 1775712315532,
+            "name": "D:\\DarchTech_PVT_LLP\\WaterTranker Project\\watertanker-backend\\logs\\application-2026-04-09.log",
+            "hash": "174ad7c9529a6334594b976549f3bd412ae1f9765eed8783566f6dac86b2b493"
+        },
+        {
+            "date": 1775820686934,
+            "name": "D:\\DarchTech_PVT_LLP\\WaterTranker Project\\watertanker-backend\\logs\\application-2026-04-10.log",
+            "hash": "456e5ecdcf4010295fbf825d06e557dd71f64302658c19841837943da8e88394"
+        },
+        {
+            "date": 1775912401963,
+            "name": "D:\\DarchTech_PVT_LLP\\WaterTranker Project\\watertanker-backend\\logs\\application-2026-04-11.log",
+            "hash": "e962adf5c134fa989cbbf1a401bc3f26b79a12b6741bdac82d4aa64fb5d90732"
+        },
+        {
+            "date": 1776057606518,
+            "name": "D:\\DarchTech_PVT_LLP\\WaterTranker Project\\watertanker-backend\\logs\\application-2026-04-13.log",
+            "hash": "b0dc12df3eee96272a26b57fd095bf2f03b06b2d1746a738676b7d19ae055d75"
+        }
+    ],
+    "hashType": "sha256"
+}

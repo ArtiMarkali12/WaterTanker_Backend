@@ -1,0 +1,15 @@
+{
+    "keep": {
+        "days": true,
+        "amount": 30
+    },
+    "auditLog": "D:\\Desktop\\Projects\\Tanker-FIlling-Station v2\\Water_Tanker-backend\\logs\\.0e37505131b45080cc6f30534c00938fc0110f0b-audit.json",
+    "files": [
+        {
+            "date": 1776164884291,
+            "name": "D:\\Desktop\\Projects\\Tanker-FIlling-Station v2\\Water_Tanker-backend\\logs\\error-2026-04-14.log",
+            "hash": "9d6d26099863fcee95b1d6ee386f451e2d7086d162b2acbd80f615dc26c2c054"
+        }
+    ],
+    "hashType": "sha256"
+}
