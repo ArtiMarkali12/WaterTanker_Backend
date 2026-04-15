@@ -27,7 +27,7 @@ const createDriver = async (req, res, next) => {
     });
 
     return sendCreated(res, {
-      message: "Driver created successfully",
+      message: "Driver created  successfully",
       data: driver,
     });
   } catch (error) {
