@@ -42,7 +42,13 @@ const getAllDrivers = async ({ page = 1, limit = 20, status } = {}) => {
  * Get a single driver by ID (excludes deleted)
  */
 const getDriverById = async (id) => {
+
   const driver = await Driver.findOne({ _id: id, isDeleted: false }).lean();
+  if (!driver) throw new AppError("Driver not found", 404);
+  return driver;
+};
+const getDriverBySerialNumberSrv = async (serialNumber) => {
+  const driver = await Driver.findOne({ serialNumber, isDeleted: false }).lean();
   if (!driver) throw new AppError("Driver not found", 404);
   return driver;
 };
@@ -79,4 +85,5 @@ module.exports = {
   getDriverById,
   updateDriver,
   deleteDriver,
+  getDriverBySerialNumberSrv,
 };

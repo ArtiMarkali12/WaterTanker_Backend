@@ -77,6 +77,21 @@ const getDriverById = async (req, res, next) => {
     next(error);
   }
 };
+/**
+ * GET /api/v1/drivers/:serialNumber
+ * Get a single driver by serial number 
+ */
+const getDriverBySerialNumber = async (req, res, next) => {
+  try {
+    const driver = await driverService.getDriverBySerialNumberSrv(req.params.serialNumber);
+    return sendSuccess(res, {
+      message: "Driver retrieved successfully",
+      data: driver,
+    });
+  } catch (error) {
+    next(error);
+  }
+};
 
 /**
  * PUT /api/v1/drivers/:id
@@ -126,4 +141,5 @@ module.exports = {
   getDriverById,
   updateDriver,
   deleteDriver,
+  getDriverBySerialNumber,
 };

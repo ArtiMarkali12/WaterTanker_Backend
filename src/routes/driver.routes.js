@@ -12,6 +12,7 @@ const {
   getDriverById,
   updateDriver,
   deleteDriver,
+  getDriverBySerialNumber,
 } = require("../controllers/driver.controller");
 const {
   createDriverValidator,
@@ -28,5 +29,6 @@ router.get("/", driverListValidator, validate, getAllDrivers);
 router.get("/:id", driverIdValidator, validate, getDriverById);
 router.put("/:id", updateDriverValidator, validate, updateDriver);
 router.delete("/:id", driverIdValidator, validate, deleteDriver);
+router.get("/serial/:serialNumber",driverIdValidator, validate, getDriverBySerialNumber);
 
 module.exports = router;
