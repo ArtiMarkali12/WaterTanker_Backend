@@ -67,7 +67,7 @@ router.post(
 router.get(
   "/",
   protect,
-  authorize(ROLES.FUEL_MANAGER, ROLES.SUPER_ADMIN),
+  // authorize(ROLES.FUEL_MANAGER, ROLES.SUPER_ADMIN),
   getAllDieselFillings,
 );
 router.get(
