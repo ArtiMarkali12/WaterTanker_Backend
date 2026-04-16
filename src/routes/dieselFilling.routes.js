@@ -31,7 +31,7 @@ const {
 router.get(
   "/report",
   protect,
-  authorize(ROLES.FUEL_MANAGER, ROLES.SUPER_ADMIN),
+  // authorize(ROLES.FUEL_MANAGER, ROLES.SUPER_ADMIN),
   dieselReportValidator,
   validate,
   generateDieselReport,
@@ -41,7 +41,7 @@ router.get(
 router.get(
   "/summary/:tankerNumber",
   protect,
-  authorize(ROLES.FUEL_MANAGER, ROLES.SUPER_ADMIN),
+  // authorize(ROLES.FUEL_MANAGER, ROLES.SUPER_ADMIN),
   tankerSummaryValidator,
   validate,
   getTankerDieselSummary,
@@ -51,7 +51,7 @@ router.get(
 router.get(
   "/wrong-entries",
   protect,
-  authorize(ROLES.SUPER_ADMIN),
+  // authorize(ROLES.SUPER_ADMIN),
   getWrongEntries,
 );
 
@@ -59,7 +59,7 @@ router.get(
 router.post(
   "/",
   protect,
-  authorize(ROLES.FUEL_MANAGER, ROLES.SUPER_ADMIN),
+  // authorize(ROLES.FUEL_MANAGER, ROLES.SUPER_ADMIN),
   recordDieselFillingValidator,
   validate,
   recordDieselFilling,
@@ -73,7 +73,7 @@ router.get(
 router.get(
   "/:id",
   protect,
-  authorize(ROLES.FUEL_MANAGER, ROLES.SUPER_ADMIN),
+  // authorize(ROLES.FUEL_MANAGER, ROLES.SUPER_ADMIN),
   getDieselFillingValidator,
   validate,
   getDieselFillingById,
@@ -81,7 +81,7 @@ router.get(
 router.put(
   "/:id",
   protect,
-  authorize(ROLES.FUEL_MANAGER, ROLES.SUPER_ADMIN),
+  // authorize(ROLES.FUEL_MANAGER, ROLES.SUPER_ADMIN),
   updateDieselFillingValidator,
   validate,
   updateDieselFilling,
@@ -89,7 +89,7 @@ router.put(
 router.delete(
   "/:id",
   protect,
-  authorize(ROLES.FUEL_MANAGER, ROLES.SUPER_ADMIN),
+  // authorize(ROLES.FUEL_MANAGER, ROLES.SUPER_ADMIN),
   deleteDieselFillingValidator,
   validate,
   deleteDieselFilling,
@@ -99,7 +99,7 @@ router.delete(
 router.put(
   "/:id/wrong",
   protect,
-  authorize(ROLES.FUEL_MANAGER, ROLES.SUPER_ADMIN),
+  // authorize(ROLES.FUEL_MANAGER, ROLES.SUPER_ADMIN),
   markAsWrongValidator,
   validate,
   markAsWrongEntry,
